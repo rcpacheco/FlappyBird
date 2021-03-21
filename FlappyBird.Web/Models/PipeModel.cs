@@ -10,6 +10,11 @@ namespace FlappyBird.Web.Models
 
         public int Speed { get; private set; } = 2;
 
+        public bool IsOffScreen()
+        {
+            return DistanceFromLeft <= -60;
+
+        }
         public void Move()
         {
             DistanceFromLeft -= Speed;

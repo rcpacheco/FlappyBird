@@ -15,7 +15,7 @@ namespace FlappyBird.Web.Models
 
         public BirdModel Bird { get; private set; }
 
-        public List<PipeModel> Pipes { get; private set; }
+        public IList<PipeModel> Pipes { get; private set; }
 
         public bool IsRunning { get; private set; } = false;
 

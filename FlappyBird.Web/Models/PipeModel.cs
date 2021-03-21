@@ -6,7 +6,7 @@ namespace FlappyBird.Web.Models
     {
         public int DistanceFromLeft { get; private set; } = 500;
 
-        public int DistanceFromBottom { get; private set; } = new Random().Next(0, 60);
+        public int DistanceFromBottom { get; private set; } = new Random().Next(1, 150);
 
         public int Speed { get; private set; } = 2;
 

@@ -4,7 +4,7 @@
     {
         public int DistanceFromGround { get; private set; } = 100;
 
-        public int JumpStrength { get; private set; } = 50;
+        public int JumpStrength { get; private set; } = 30;
 
         public bool IsOnGround()
         {

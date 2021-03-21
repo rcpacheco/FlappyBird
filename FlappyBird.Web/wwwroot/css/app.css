@@ -44,12 +44,32 @@
     position: absolute;
 }
 
+
+.ground-container {
+    height: 150px;
+    width: 580px;
+    left: 80px;
+    position: absolute;
+}
+
 .ground {
     background-image: url(../images/bottom-background.png);
     width: 500px;
     height: 150px;
     position: absolute;
     top: 580px;
+    z-index: +1;
+}
+
+.ground.moving {
+    background-image: url(../images/bottom-background.png);
+    background-repeat: repeat-x;
+    width: 100%;
+    height: 150px;
+    position: absolute;
+    top: 580px;
+    animation: slideright 100s infinite linear;
+    -webkit-animation: slideright 100s infinite linear;
     z-index: +1;
 }
 
@@ -89,4 +109,24 @@
     position: absolute;
     right: 0.75rem;
     top: 0.5rem;
+}
+
+@keyframes slideright {
+    from {
+        background-position: 10000%;
+    }
+
+    to {
+        background-position: 0%;
+    }
+}
+
+@-webkit-keyframes slideright {
+    from {
+        background-position: 10000%;
+    }
+
+    to {
+        background-position: 0%;
+    }
 }

@@ -1,0 +1,9 @@
+﻿<div class="ground-container">
+    <div class="ground @_groundCss"></div>
+</div>
+
+@code {
+    [Parameter] public bool IsRunning { get; set; }
+
+    private string _groundCss => IsRunning ? "moving" : "";
+}

@@ -10,6 +10,12 @@ namespace FlappyBird.Web.Models
 
         public int Speed { get; private set; } = 2;
 
+        public int Gap { get; set; } = 130;
+
+        public int GapButton => DistanceFromBottom + 300;
+
+        public int GapTop => GapButton + Gap;
+
         public bool IsOffScreen()
         {
             return DistanceFromLeft <= -60;
@@ -18,6 +24,14 @@ namespace FlappyBird.Web.Models
         public void Move()
         {
             DistanceFromLeft -= Speed;
+        }
+
+        public bool IsCentered()
+        {
+            bool hasEnteredCenter = DistanceFromLeft <= (500 / 2) + (60 / 2);
+            bool hasExitedCenter = DistanceFromLeft <= (500 / 2) - (60 / 2) - 60;
+
+            return hasEnteredCenter && !hasExitedCenter;
         }
     }
 }

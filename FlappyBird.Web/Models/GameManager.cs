@@ -9,6 +9,8 @@ namespace FlappyBird.Web.Models
     {
         private readonly int _gravity = 2;
 
+        private readonly int _delayTime = 20;
+
         public event EventHandler MainLoopCompleted;
 
         public BirdModel Bird { get; private set; }
@@ -33,7 +35,7 @@ namespace FlappyBird.Web.Models
                 ManagePipes();
 
                 MainLoopCompleted?.Invoke(this, EventArgs.Empty);
-                await Task.Delay(20).ConfigureAwait(false);
+                await Task.Delay(_delayTime).ConfigureAwait(false);
             }
         }
 
@@ -61,11 +63,20 @@ namespace FlappyBird.Web.Models
             {
                 GameOver();
             }
+            var centeredPipe = Pipes.FirstOrDefault(p => p.IsCentered());
+            if (centeredPipe != null)
+            {
+                bool hasCollodedWithBottom = Bird.DistanceFromGround < centeredPipe.GapButton - 150; // GroundHeigh
+                bool hasCollodedWithTop = Bird.DistanceFromGround + 45 > centeredPipe.GapTop - 150; // BirdHeigh / GroundHeigh
+                if (hasCollodedWithBottom || hasCollodedWithTop)
+                {
+                    GameOver();
+                }
+            }
         }
-
         private void ManagePipes()
         {
-            if (!Pipes.Any() || Pipes.Last().DistanceFromLeft <= 250)
+            if (!Pipes.Any() || Pipes.Last().DistanceFromLeft <= 250) // GameWidth/2
             {
                 Pipes.Add(new PipeModel());
             }

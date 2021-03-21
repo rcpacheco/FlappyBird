@@ -29,10 +29,14 @@ namespace FlappyBird.Web.Models
                 Bird.Fall(_gravity);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Bird)));
 
+                Pipe.Move();
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Pipe)));
+
                 if (Bird.DistanceFromGround <= 0)
                 {
-                    IsRunning = false;
+                    GameOver();
                 }
+
                 await Task.Delay(20).ConfigureAwait(false);
             }
         }
@@ -44,6 +48,11 @@ namespace FlappyBird.Web.Models
                 Bird = new BirdModel();
                 MainLoop();
             }
+        }
+
+        public void GameOver()
+        {
+            IsRunning = false;
         }
     }
 }
